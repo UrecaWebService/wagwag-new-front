@@ -30,7 +30,6 @@ const Topbar = styled.div`
     top: 2.9vw;
     display: flex;
     position: absolute;
-    /* position: fixed; */
     width: 79.16vw;
     height: 4.16vw;
     border: 1.5px solid rgba(87, 249, 142, 0.3);
@@ -38,6 +37,7 @@ const Topbar = styled.div`
     background-color:rgba(8, 8, 8, 0.8);
     left: 50%;
     transform: translateX(-50%);
+    transition: top 0.3s;
 `
 const LocationIconImg = styled.img.attrs({
     src: LocationIcon,
@@ -124,7 +124,73 @@ const IconTextContainer = styled.div`
     margin-right: 2.55vw;
 `;
 
+const Waggle = styled.div`
+    width: 16.35vw;
+    height: 21.71vw;
+    margin-right: 1.04vw;
+    border-radius: 1vw;
+    background-color: #222222;
+`
+const WaggleComponent = styled.div`
+    /* display: flex; */
+`
+const WaggleContainer = styled.div`
+    margin-left: 5.2vw;
+    margin-top: 1.25vw;
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+    justify-content: flex-start; /* 왼쪽 정렬 (중앙정렬은 center) */
+`;
+const WaggleTitleContainer = styled.div`
+    display: flex;
+    margin-top: ${({ margin }) => (margin ? '8.33vw' : '11.3vw')};
+    margin-left: 5.2vw;
+    /* border: 1px solid red; */
+`
 
+const WaggleTitle = styled.h3`
+    font-family: 'Pretendard-Regular';
+    font-size: 1.56vw;
+    color: #57F98E;
+`
+const WaggleSmallTitle = styled.h4`
+    margin-top: 0.63vw;
+    font-family: 'Pretendard-Regular';
+    font-size: 1.09vw;
+    color: #ffffff;
+`
+
+const WaggleTitle2 = styled.h3`
+    font-family: 'Pretendard-Regular';
+    font-size: 1.56vw;
+    margin-left: 0.36vw;
+    color: white;
+`
+const WaggleView = styled.h4`
+    position: absolute;
+    margin: 1.09vw 0 0 12.55vw;
+    float: right;
+    font-family: 'Pretendard-Regular';
+    font-size: 0.93vw;
+    /* position: absolute; */
+    margin-right: 1.19vw;
+    color: #A7A7A7;
+`
+const WaggleNickName = styled.h4`
+    position: absolute;
+    margin: 19.47vw 0 0 1.09vw;
+    font-family: 'Pretendard-Regular';
+    font-size: 0.93vw;
+    color: #A7A7A7;
+`
+const WaggleLike = styled.h4`
+    position: absolute;
+    margin: 19.47vw 0 0 12.55vw;
+    float: right;
+    font-family: 'Pretendard-Regular';
+    font-size: 0.93vw;
+    color: #A7A7A7;
+`
 const CategoryContainer = styled.div`
     display: flex;
     align-items: center;
@@ -134,14 +200,14 @@ const CategoryButton = styled.button`
     color: white;
     font-family: 'Pretendard-Medium';
     font-size: 0.98vw;
-    position: relative;
     margin-right: 0.83vw;
-    width: ${({ isWide }) => (isWide ? '11.74vw' : '7.34vw')};
+    width: ${({ isWide, isExtraWide }) =>
+        isExtraWide ? '11.74vw' : isWide ? '9.21vw' : '7.34vw'};
     height: 3.22vw;
     border: 1px solid #5E5E5E;
     background-color: #080808;
     border-radius: 10vw;
-    top: 87.23vw;
+    margin-top: 14.06vw;
 
     &:hover {
     cursor: pointer;
@@ -149,45 +215,16 @@ const CategoryButton = styled.button`
     background-color: white;
 }
 `
-const Waggle = styled.div`
-    width: 16.35vw;
-    height: 21.71vw;
-    margin-right: 1.04vw;
+
+const CategoryWaggle = styled.div`
+    margin-top: 2.91vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26.82vw;
+    height: 47.86vw;
     border-radius: 1vw;
     background-color: #222222;
-`
-const WaggleComponent = styled.div`
-    position: absolute;
-    left: 5.2vw;
-    top: 14.42vw;
-    display: flex;
-`
-
-const WaggleTitle = styled.h3`
-    font-family: 'Pretendard-Regular';
-    font-size: 1.56vw;
-    top: 11.3vw;
-    left: 5.2vw;
-    position: absolute;
-    color: white;
-`
-const WaggleView = styled.h4`
-    font-family: 'Pretendard-Regular';
-    font-size: 0.93vw;
-    /* position: absolute; */
-    margin-right: 1.19vw;
-    color: #A7A7A7;
-`
-const WaggleNickName = styled.h4`
-    font-family: 'Pretendard-Regular';
-    font-size: 0.93vw;
-    color: #A7A7A7;
-`
-const WaggleLike = styled.h4`
-    font-family: 'Pretendard-Regular';
-    font-size: 0.93vw;
-    /* position: absolute; */
-    color: #A7A7A7;
 `
 
 export const WagMain = () => {
@@ -212,29 +249,95 @@ export const WagMain = () => {
                     </IconTextContainer>
                 </Topbar>
                 <SideBarComponent />
-                <WaggleTitle>서대문구 대현동 인기 와글</WaggleTitle>
-                <WaggleComponent>
-                    <Waggle>
-                        <WaggleView>23.9K</WaggleView>
-                        <WaggleNickName>SONNN</WaggleNickName>
-                        <WaggleLike>12.6KK</WaggleLike>
-                    </Waggle>
-                    <Waggle></Waggle>
-                    <Waggle></Waggle>
-                    <Waggle></Waggle>
-                    <Waggle></Waggle>
-                </WaggleComponent>
+                <WaggleTitleContainer>
+                    <WaggleTitle>서대문구 대현동</WaggleTitle><WaggleTitle2>인기 와글</WaggleTitle2>
+                </WaggleTitleContainer>
+                <WaggleContainer>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+
+                </WaggleContainer>
+
+                <WaggleTitleContainer margin>
+                    <WaggleTitle>서대문구 대현동</WaggleTitle><WaggleTitle2>인기 와글</WaggleTitle2>
+                </WaggleTitleContainer>
+                <WaggleContainer>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                    <WaggleComponent>
+                        <Waggle>
+                            <WaggleView>23.9K</WaggleView>
+                            <WaggleLike>12.6K</WaggleLike>
+                            <WaggleNickName>SONNN</WaggleNickName>
+                        </Waggle>
+                        <WaggleSmallTitle>대현문화공원 앞에 버스킹 실력자</WaggleSmallTitle>
+                    </WaggleComponent>
+                </WaggleContainer>
+
                 <CategoryContainer>
                     <CategoryButton>전체</CategoryButton>
                     <CategoryButton>운동</CategoryButton>
                     <CategoryButton>뷰티</CategoryButton>
-                    <CategoryButton>일상생활</CategoryButton>
+                    <CategoryButton isWide>일상생활</CategoryButton>
                     <CategoryButton>게임</CategoryButton>
                     <CategoryButton>음식</CategoryButton>
                     <CategoryButton>산책</CategoryButton>
                     <CategoryButton>노래</CategoryButton>
-                    <CategoryButton isWide>타 지역 인기 와글</CategoryButton>
+                    <CategoryButton isExtraWide>타 지역 인기 와글</CategoryButton>
                 </CategoryContainer>
+                <CategoryWaggle></CategoryWaggle>
                 <FooterComponent />
             </BackGroundColor>
         </>
