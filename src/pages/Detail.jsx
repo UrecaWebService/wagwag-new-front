@@ -3,45 +3,69 @@ import data from "../data.json";
 import { useEffect, useState } from "react";
 
 const Wrapper = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-left: 9.167vh;
   width: 100vw;
   height: 100vh;
-  background: #080808;
 `;
 const IconContainer = styled.div`
+  display: flex;
+  min-width: 500px;
   font-family: "Pretendard";
-  position: absolute;
-  width: 36.26vw;
+  width: 64.464vh;
   height: 100vh;
-  left: 34.2vw;
 `;
 const WaggleContainer = styled.div`
-  position: relative;
-  width: 31.55vw;
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 56.091vh;
   height: 100%;
   background: #222222;
 `;
-const PlayIcon = styled.span.attrs({
-  className: "material-symbols-outlined",
-})`
-  font-size: 1.56vw;
+
+const WaggleViewContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  
+`
+const WaggleInnerViewContainer = styled.div`
+  display: flex;
+  margin-right: 3.473vh;
   position: absolute;
-  right: 6vw;
-  top: 1.6vw;
-  color: #fff;
-  padding-right: 0.2vw;
-`;
+  top: 2.9vh;
+  
+`
+const WaggleProfileContainer = styled.div`
+  position: absolute;
+  top: 85.1vh;
+  flex-direction: column;
+  margin-left: 2.5vh;
+`
+const WaggleVideoContents = styled.div`
+  
+`
+
+const WaggleSideContainer = styled.div`
+  margin-left: 1.817vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 8.3734vh;
+`
+
 const ArrowUpButton = styled.div`
-  width: 3.64vw;
-  height: 3.64vw;
-  position: absolute;
-  top: 23.6vw;
-  right: 0;
+  width: 70px;
+  height: 70px;
   border: 1px solid #5e5e5e;
-  border-radius: 0.8vw;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1.5441vh;
 `;
 const ArrowUpIcon = styled.span.attrs({
   className: "material-symbols-outlined",
@@ -52,6 +76,21 @@ const ArrowUpIcon = styled.span.attrs({
     color: #fff;
   }
 `;
+const SideButtonCombinedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: flex-end;
+`;
+
+const SideButtonBottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 8.1374vh;
+`;
+
+//156.85
 const ArrowDownIcon = styled.span.attrs({
   className: "material-symbols-outlined",
 })`
@@ -62,90 +101,84 @@ const ArrowDownIcon = styled.span.attrs({
   }
 `;
 const ArrowDownButton = styled.div`
-  width: 3.64vw;
-  height: 3.64vw;
-  position: absolute;
-  top: 29vw;
-  right: 0;
+  margin-top: 1.5441vh;
+  margin-bottom: 14.182vh;
+  width: 70px;
+  height: 70px;
   border: 1px solid #5e5e5e;
-  border-radius: 0.8vw;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const LikeIconContainer = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 3.6vw;
-  height: 4.1vw;
-  top: 40.8vw;
-  left: 32.66vw;
+  width: 69px;
+  height: 79px;
+
   color: #fff;
-  gap: 0.45vw;
+  gap: 5px;
 `;
 const LikeIcon = styled.span.attrs({
   className: "material-symbols-outlined",
 })`
   display: flex;
   justify-content: center;
-  font-size: 2.26vw;
+  font-size: 43px;
 `;
 const LikeCount = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 0.99vw;
+  font-size: 19px;
 `;
 const ShareIconContainer = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 3.6vw;
-  height: 4.1vw;
-  top: 47.5vw;
-  left: 32.66vw;
+  width: 69px;
+  height: 79px;
+
   color: #fff;
-  gap: 0.45vw;
+  gap: 5px;
 `;
 const ShareIcon = styled.span.attrs({
   className: "material-symbols-outlined",
 })`
   display: flex;
   justify-content: center;
-  font-size: 2.26vw;
+  font-size: 43px;
 `;
 const ShareCount = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 0.99vw;
+  font-size: 19px;
+`;
+const PlayIcon = styled.span.attrs({
+  className: "material-symbols-outlined",
+})`
+  font-size: 30px;
+  color: #fff;
+  padding-right: 0.2vw;
 `;
 const View = styled.div`
-  position: absolute;
-  width: 4.37vw;
+  width: 71px;
   height: 1.56vw;
-  top: 1.6vw;
-  right: 1.95vw;
   color: #fff;
-  font-size: 1.35vw;
+  font-size: 26px;
 `;
 const Account = styled.div`
-  position: absolute;
   width: 5.1vw;
   height: 1.3vw;
-  top: 47.86vw;
-  left: 1.4vw;
   color: #fff;
-  font-size: 0.93vw;
+  font-size: 18px;
   font-weight: bold;
 `;
 const Title = styled.div`
-  position: absolute;
-  width: 15.74vw;
-  height: 1.53vw;
-  top: 50.1vw;
-  left: 1.4vw;
+  margin-top: 2.4vh;
+  width: 33vh;
+  height: 2.56vh;
   color: #fff;
-  font-size: 1.14vw;
+  font-size: 22px;
 `;
 function Detail() {
   const [like, setLike] = useState(0);
@@ -173,26 +206,45 @@ function Detail() {
     <Wrapper>
       <IconContainer>
         <WaggleContainer>
-          <PlayIcon>play_arrow</PlayIcon>
-          <View>23.9K</View>
-          <Account>{dummyData.account}</Account>
-          <Title>{dummyData.mainTitle}</Title>
+          <WaggleViewContainer>
+            <WaggleInnerViewContainer>
+              <PlayIcon>play_arrow</PlayIcon>
+              <View>23.9K</View>
+            </WaggleInnerViewContainer>
+          </WaggleViewContainer>
+          <WaggleProfileContainer>
+            <WaggleVideoContents>
+
+            </WaggleVideoContents>
+            <Account>{dummyData.account}</Account>
+            <Title>{dummyData.mainTitle}</Title>
+          </WaggleProfileContainer>
         </WaggleContainer>
-        <ArrowUpButton>
-          <ArrowUpIcon>arrow_upward</ArrowUpIcon>
-        </ArrowUpButton>
-        <ArrowDownButton>
-          <ArrowDownIcon>arrow_downward</ArrowDownIcon>
-        </ArrowDownButton>
-        <LikeIconContainer onClick={handleLikeCount}>
-          <LikeIcon>favorite</LikeIcon>
-          <LikeCount>{like}</LikeCount>
-        </LikeIconContainer>
-        <ShareIconContainer onClick={handleShareCount}>
-          <ShareIcon>share</ShareIcon>
-          <ShareCount>{share}</ShareCount>
-        </ShareIconContainer>
-      </IconContainer>
+        <WaggleSideContainer>
+          <SideButtonCombinedContainer>
+            <ArrowUpButton>
+              <ArrowUpIcon>arrow_upward</ArrowUpIcon>
+            </ArrowUpButton>
+            <ArrowDownButton>
+              <ArrowDownIcon>arrow_downward</ArrowDownIcon>
+            </ArrowDownButton>
+            <SideButtonBottomContainer>
+              <LikeIconContainer onClick={handleLikeCount}>
+                <LikeIcon>favorite</LikeIcon>
+                <LikeCount>{like}</LikeCount>
+              </LikeIconContainer>
+              <ShareIconContainer onClick={handleShareCount}>
+                <ShareIcon>share</ShareIcon>
+                <ShareCount>{share}</ShareCount>
+              </ShareIconContainer>
+            </SideButtonBottomContainer>
+          </SideButtonCombinedContainer>
+
+
+        </WaggleSideContainer>
+
+
+     </IconContainer>
     </Wrapper>
   );
 }

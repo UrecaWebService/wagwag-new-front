@@ -19,7 +19,7 @@ import {FooterComponent} from "../../styles/Footer.jsx";
 const UploadLayout = () => {
 
     const SettingBackImages = styled.div` //네이버로고
-        width: 100vw;
+        width: 100%;
         height: 100vh;
         background-image: url(${settingBg});
         background-size: cover;       // 이미지를 화면 크기에 맞게 조절
