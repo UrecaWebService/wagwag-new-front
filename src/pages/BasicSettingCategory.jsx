@@ -43,16 +43,16 @@ const BasicSettingCategory = () => {
             try {
                 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-                const { userId, authToken } = userState;
+                const { idToken, accessToken } = userState;
 
-                const response = await fetch(`${backendUrl}/api/v1/user/complete-setup`, {
+                const response = await fetch(`${backendUrl}/api/v1/users/modify`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`, 
+                        'Authorization': `Bearer ${accessToken}`, 
                     },
                     body: JSON.stringify({
-                        userId: userId,
+                        userId: idToken,
                         nickname: newComerState.userNickName,
                         userRegion: newComerState.userRegion,
                         userCategory: newComerState.userCategory,
@@ -64,8 +64,6 @@ const BasicSettingCategory = () => {
                     const errorData = await response.json();
                     throw new Error(errorData.message || '설정 완료에 실패했습니다.');
                 }
-
-                const data = await response.json();
 
                 navigate('/main');
             } catch (err) {
