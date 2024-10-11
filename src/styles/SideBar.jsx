@@ -129,6 +129,7 @@ const Sidebar = styled.div`
     position: relative;
     width: 10vw;
     height: 100vh;
+    min-height: 910px;
     background-color: #080808;
     border-right: 1px solid #2B2B2B;
     position: fixed;

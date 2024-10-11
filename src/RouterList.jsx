@@ -114,7 +114,13 @@ export const RouterList = () => [
       {
         // User's liked videos
         path: "detail",
-        element: <Detail />,
+        element: <UploadLayout/>,
+        children: [
+          {
+            path: "",
+            element: <Detail />,
+          }
+        ]
       },
     ],
   },
