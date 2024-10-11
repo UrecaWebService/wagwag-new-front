@@ -17,7 +17,7 @@ const NaverLoginHandler = () => {
             const urlState = new URLSearchParams(window.location.search).get('state'); // protect from CSRF
 
             if(code && urlState){
-                const storedState = localStorage.getItem('naver_login_state');
+                const storedState = sessionStorage.getItem('naver_login_state');
 
                 // state 값 비교
                 if (urlState !== storedState) {
@@ -25,7 +25,7 @@ const NaverLoginHandler = () => {
                     navigate('/login');
                     return;
                 }
-                localStorage.removeItem('naver_login_state');
+                sessionStorage.removeItem('naver_login_state');
 
                 try {
 
@@ -43,9 +43,9 @@ const NaverLoginHandler = () => {
                     const result = await response.json();
                     const { accessToken, idToken, user, isNewcomer } = result;
 
-                    // store tokens in local storage
-                    localStorage.setItem('accessToken', accessToken);
-                    localStorage.setItem('idToken', idToken);
+                    // store tokens in session storage
+                    sessionStorage.setItem('accessToken', accessToken);
+                    sessionStorage.setItem('idToken', idToken);
 
                     // update recoil state
                     setAuthState({

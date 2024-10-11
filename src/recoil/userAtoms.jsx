@@ -18,9 +18,7 @@ export const newComerAtoms = atom({
     default: {
         userNickName: null,
         userProfileImage: null,
-        userRegion: [
-
-        ],
+        userRegion: [],
         userCategory: [],
     },
 });

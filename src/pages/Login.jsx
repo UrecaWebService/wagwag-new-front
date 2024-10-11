@@ -26,7 +26,7 @@ const Login = () => {
     const navetRedirect = import.meta.env.VITE_NAVER_REDIRECT_URL;
     const state = generateRandomState();
 
-    localStorage.setItem('naver_login_state', state);
+    sessionStorage.setItem('naver_login_state', state);
 
     window.location.href = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClient}&state=${state}&redirect_uri=${navetRedirect}`;
   };
@@ -37,7 +37,9 @@ const Login = () => {
     const googleRedirect = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
     const scope = 'email profile';
 
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${googleClientId}&redirect_uri=${encodeURIComponent(googleRedirect)}&scope=${encodeURIComponent(scope)}`;
+    setTimeout(() => {
+      window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${googleClientId}&redirect_uri=${encodeURIComponent(googleRedirect)}&scope=${encodeURIComponent(scope)}`;
+    }, 100);
   };
 
   const noLogin = () => {

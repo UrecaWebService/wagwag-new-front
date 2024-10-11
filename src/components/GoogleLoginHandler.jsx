@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { userAtoms } from '../recoil/userAtoms';
 import LandingPage from '../pages/LandingPage';
+import { newComerAtoms } from '../recoil/userAtoms';
 
 const GoogleLoginHandler = () => {
   const navigate = useNavigate();
