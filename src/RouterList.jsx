@@ -17,6 +17,7 @@ import { Upload } from "./pages/Upload.jsx";
 import UploadLayout from "./components/layout/UploadLayout.jsx";
 import * as path from "node:path"; // Import LandingPage
 import Detail from "./pages/Detail.jsx";
+import LoginLayout from "./components/layout/LoginLayout";
 
 export const RouterList = () => [
   {
@@ -105,10 +106,9 @@ export const RouterList = () => [
         children: [
           {
             path: "dev",
-            element: <Upload />
+            element: <Upload />,
           },
-
-        ]
+        ],
       },
       {
         // User's liked videos
